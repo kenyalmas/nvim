@@ -45,5 +45,10 @@ return {
 		})
 	end,
 
-	vim.cmd.colorscheme("onedark"),
+	{
+		"LazyVim/LazyVim",
+		opts = {
+			colorscheme = "onedark",
+		},
+	},
 }
