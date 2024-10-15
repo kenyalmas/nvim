@@ -34,6 +34,12 @@ autocmd({ "BufWritePre" }, {
 	command = [[%s/\s\+$//e]],
 })
 
+------- LSP configuration ------------------------------
+
+vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>")
+
+vim.keymap.set("n", "<leader>fmt", vim.lsp.buf.format)
+
 autocmd("LspAttach", {
 	group = D3dk3nyGroup,
 	callback = function(e)
