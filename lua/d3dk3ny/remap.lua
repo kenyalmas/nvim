@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>fe", vim.cmd.Ex, { desc = "File Explorer" })
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })
 
 -- Set K & J to shift lines up & down file
