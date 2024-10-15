@@ -1,2 +1,2 @@
-require("d3dk3ny")
+require("dedkeny")
 

@@ -1,10 +1,10 @@
-require("d3dk3ny.set")
-require("d3dk3ny.remap")
-require("d3dk3ny.lazy_init")
-require("d3dk3ny.options")
+require("dedkeny.set")
+require("dedkeny.remap")
+require("dedkeny.lazy_init")
+require("dedkeny.options")
 
 local augroup = vim.api.nvim_create_augroup
-local D3dk3nyGroup = augroup("D3dk3ny", {})
+local DedkenyGroup = augroup("Dedkeny", {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 autocmd({ "BufWritePre" }, {
-	group = D3dk3nyGroup,
+	group = DedkenyGroup,
 	pattern = "*",
 	command = [[%s/\s\+$//e]],
 })
@@ -41,7 +41,7 @@ vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>")
 vim.keymap.set("n", "<leader>fmt", vim.lsp.buf.format)
 
 autocmd("LspAttach", {
-	group = D3dk3nyGroup,
+	group = DedkenyGroup,
 	callback = function(e)
 		local opts = { buffer = e.buf }
 		vim.keymap.set("n", "gd", function()
