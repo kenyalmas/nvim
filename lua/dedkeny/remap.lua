@@ -2,8 +2,8 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })
 
 -- Set K & J to shift lines up & down file
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("n", "K", ":m '<-2<CR>gv=gv")
 
 -- Delete trailing newline
 vim.keymap.set("n", "J", "mzJ`z")
