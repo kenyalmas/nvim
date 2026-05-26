@@ -1,0 +1,44 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Local Neovim runtime artifacts
+.nvimlog
+
+# Local editor/project state
+.vscode/
+.idea/
+
+# LuaRocks / plugin build outputs (local)
+*.rock
+*.rockspec.bak
+
+# Temp and logs
+*.log
+tmp/
+temp/
+
+# Local/private planning docs
+whitepaper.md
+context.md
+
+# Environment and secret files
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.crt
+*.cer
+*.pfx
+*.secret
+secrets/
+
+# Local config and machine state
+*.local
+*.cache
+*.tmp
+*.bak
