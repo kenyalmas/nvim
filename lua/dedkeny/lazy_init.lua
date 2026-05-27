@@ -12,6 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	spec = "dedkeny.lazy",
+	spec = {
+		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		{ import = "dedkeny.lazy" },
+	},
 	change_detection = { notify = true },
 })

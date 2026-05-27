@@ -7,6 +7,9 @@ Thumbs.db
 
 # Local Neovim runtime artifacts
 .nvimlog
+.nvim_startup.log
+.health_*.txt
+.xdg/
 
 # Local editor/project state
 .vscode/
@@ -24,10 +27,14 @@ temp/
 # Local/private planning docs
 whitepaper.md
 context.md
+rules.md
 
 # Environment and secret files
 .env
 .env.*
+.envrc
+.direnv/
+.secrets/
 *.key
 *.pem
 *.p12
@@ -42,3 +49,4 @@ secrets/
 *.cache
 *.tmp
 *.bak
+*.session
