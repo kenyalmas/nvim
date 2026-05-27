@@ -17,6 +17,20 @@ nvim --headless "+Lazy! sync" +qa
 ## Windows
 - Ensure `nvim` is on `PATH`.
 - Ensure a C toolchain is available for parser/plugin builds (`zig`, `clang`, etc).
+- Install `gdb` (winget):
+```powershell
+winget install --id BrechtSanders.WinLibs.POSIX.UCRT -e --accept-package-agreements --accept-source-agreements
+```
+- Add `gdb` to user `PATH` (if your shell cannot find it after install):
+```powershell
+$gdbBin = "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\mingw64\bin"
+[Environment]::SetEnvironmentVariable("Path", ([Environment]::GetEnvironmentVariable("Path","User").TrimEnd(";") + ";" + $gdbBin), "User")
+```
+- Reopen terminal and verify:
+```powershell
+where.exe gdb
+gdb --version
+```
 - If Windows security features block writes, use user-writable runtime/data paths.
 - Verify:
 ```powershell
