@@ -2,6 +2,7 @@ require("dedkeny.set")
 require("dedkeny.remap")
 require("dedkeny.lazy_init")
 require("dedkeny.options")
+require("dedkeny.startup_cwd")
 
 local augroup = vim.api.nvim_create_augroup
 local DedkenyGroup = augroup("Dedkeny", {})
@@ -76,3 +77,18 @@ autocmd("LspAttach", {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+vim.api.nvim_create_user_command("LazyMessages", function()
+	vim.cmd("messages")
+end, { desc = "Show startup and plugin messages" })
+
+vim.api.nvim_create_user_command("LazyLogFile", function()
+	vim.cmd("edit " .. vim.fn.stdpath("state") .. "/lazy/log.json")
+end, { desc = "Open lazy.nvim log file" })
+
+vim.keymap.set("n", "<leader>ed", vim.diagnostic.open_float, { desc = "Line diagnostics" })
+vim.keymap.set("n", "<leader>eq", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
+vim.keymap.set("n", "<leader>em", "<cmd>LazyMessages<cr>", { desc = "Show messages" })
+vim.keymap.set("n", "<leader>el", "<cmd>Lazy log<cr>", { desc = "Show Lazy log" })
+vim.keymap.set("n", "<leader>en", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })

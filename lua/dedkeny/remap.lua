@@ -1,5 +1,31 @@
 vim.g.mapleader = " "
+
+local function toggle_terminal()
+	local terminal_windows = {}
+
+	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		if vim.bo[buf].buftype == "terminal" then
+			table.insert(terminal_windows, win)
+		end
+	end
+
+	if #terminal_windows > 0 then
+		for _, win in ipairs(terminal_windows) do
+			if vim.api.nvim_win_is_valid(win) then
+				vim.api.nvim_win_close(win, false)
+			end
+		end
+		return
+	end
+
+	vim.cmd("botright split")
+	vim.cmd("terminal")
+	vim.cmd("startinsert")
+end
+
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>tr", toggle_terminal, { desc = "Toggle terminal" })
 
 -- Set K & J to shift lines up & down file
 vim.keymap.set("n", "J", ":m '>+1<CR>gv=gv")
@@ -71,4 +97,3 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Go QOL
-vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")

@@ -21,6 +21,7 @@ Thumbs.db
 
 # Temp and logs
 *.log
+*.txt
 tmp/
 temp/
 
