@@ -1,50 +1,163 @@
 return {
-	"navarasu/onedark.nvim",
+	{
+		"navarasu/onedark.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			local palette = {
+				bg = "#000000",
+				bg_dark = "#040406",
+				bg_gutter = "#050507",
+				bg_visual = "#242424",
+				fg = "#f8f8f2",
+				fg_dark = "#c8c2b8",
+				fg_gutter = "#6f6a64",
+				comment = "#75715e",
+				red = "#ff6188",
+				orange = "#fc9867",
+				yellow = "#ffd866",
+				green = "#a9dc76",
+				cyan = "#78dce8",
+				blue = "#78dce8",
+				purple = "#ab9df2",
+				magenta = "#ff7ab6",
+			}
 
-	lazy = false,
-	priority = 1000,
-	config = function()
-		require("onedark").setup({
-			-- Main options --
-			style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-			transparent = false, -- Show/hide background
-			term_colors = true, -- Change terminal color as per the selected theme style
-			ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
-			cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+			require("onedark").setup({
+				style = "darker",
+				transparent = false,
+				term_colors = true,
+				ending_tildes = false,
+				cmp_itemkind_reverse = false,
+				toggle_style_key = nil,
+				toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" },
+				code_style = {
+					comments = "italic",
+					keywords = "none",
+					functions = "none",
+					strings = "none",
+					variables = "none",
+				},
+				lualine = {
+					transparent = false,
+				},
+				colors = {
+					bg0 = palette.bg,
+					bg1 = palette.bg_gutter,
+					bg2 = palette.bg_visual,
+					bg3 = "#111115",
+					bg_d = palette.bg_dark,
+					bg_blue = palette.blue,
+					bg_yellow = palette.yellow,
+					fg = palette.fg,
+					purple = palette.purple,
+					green = palette.green,
+					orange = palette.orange,
+					blue = palette.blue,
+					yellow = palette.yellow,
+					cyan = palette.cyan,
+					red = palette.red,
+					grey = palette.comment,
+					light_grey = palette.fg_gutter,
+					dark_cyan = "#5ac8d8",
+					dark_red = "#c53b53",
+					dark_yellow = "#b8932f",
+					dark_purple = "#8d7fe0",
+					diff_add = "#223122",
+					diff_delete = "#3a1f28",
+					diff_change = "#223040",
+					diff_text = "#31506b",
+				},
+				highlights = {
+					Normal = { fg = palette.fg, bg = palette.bg },
+					NormalNC = { fg = palette.fg, bg = palette.bg },
+					SignColumn = { bg = palette.bg_gutter },
+					EndOfBuffer = { fg = palette.bg, bg = palette.bg },
+					NormalFloat = { fg = palette.fg, bg = palette.bg_dark },
+					FloatBorder = { fg = palette.blue, bg = palette.bg_dark },
+					FloatTitle = { fg = palette.yellow, bg = palette.bg_dark, fmt = "bold" },
+					CursorLine = { bg = "#07070a" },
+					CursorLineNr = { fg = palette.yellow, bg = "#07070a", fmt = "bold" },
+					LineNr = { fg = palette.fg_gutter, bg = palette.bg_gutter },
+					ColorColumn = { bg = "#060609" },
+					Visual = { bg = palette.bg_visual },
+					Search = { fg = "#000000", bg = palette.yellow, fmt = "bold" },
+					IncSearch = { fg = "#000000", bg = palette.orange, fmt = "bold" },
+					MatchParen = { fg = "#000000", bg = palette.purple, fmt = "bold" },
+					Pmenu = { fg = palette.fg, bg = "#060609" },
+					PmenuSel = { fg = "#000000", bg = palette.blue, fmt = "bold" },
+					PmenuSbar = { bg = "#0a0a0d" },
+					PmenuThumb = { bg = palette.comment },
+					StatusLine = { fg = palette.fg, bg = "#050507" },
+					StatusLineNC = { fg = palette.fg_gutter, bg = "#030304" },
+					WinSeparator = { fg = "#111116" },
+					VertSplit = { fg = "#111116" },
+					Comment = { fg = palette.comment, fmt = "italic" },
+					Constant = { fg = palette.orange },
+					String = { fg = palette.yellow },
+					Character = { fg = palette.yellow },
+					Number = { fg = palette.orange },
+					Boolean = { fg = palette.orange, fmt = "bold" },
+					Float = { fg = palette.orange },
+					Identifier = { fg = palette.fg },
+					Function = { fg = palette.green },
+					Statement = { fg = palette.magenta },
+					Conditional = { fg = palette.magenta },
+					Repeat = { fg = palette.magenta },
+					Operator = { fg = palette.red },
+					Keyword = { fg = palette.magenta },
+					Exception = { fg = palette.red },
+					PreProc = { fg = palette.cyan },
+					Include = { fg = palette.red },
+					Type = { fg = palette.cyan },
+					Special = { fg = palette.purple },
+					Delimiter = { fg = palette.fg_dark },
+					DiagnosticError = { fg = palette.red },
+					DiagnosticWarn = { fg = palette.yellow },
+					DiagnosticInfo = { fg = palette.blue },
+					DiagnosticHint = { fg = palette.cyan },
+					DiagnosticVirtualTextError = { fg = palette.red, bg = "#12090c" },
+					DiagnosticVirtualTextWarn = { fg = palette.yellow, bg = "#151106" },
+					DiagnosticVirtualTextInfo = { fg = palette.blue, bg = "#081017" },
+					DiagnosticVirtualTextHint = { fg = palette.cyan, bg = "#071214" },
+					GitSignsAdd = { fg = palette.green },
+					GitSignsChange = { fg = palette.blue },
+					GitSignsDelete = { fg = palette.red },
+					["@property"] = { fg = palette.fg },
+					["@variable"] = { fg = palette.fg },
+					["@variable.builtin"] = { fg = palette.red, fmt = "italic" },
+					["@parameter"] = { fg = "#fcfcfa" },
+					["@field"] = { fg = palette.cyan },
+					["@variable.member"] = { fg = palette.cyan },
+					["@function"] = { fg = palette.green },
+					["@function.builtin"] = { fg = palette.cyan, fmt = "bold" },
+					["@method"] = { fg = palette.green },
+					["@constructor"] = { fg = palette.yellow },
+					["@type"] = { fg = palette.cyan },
+					["@type.builtin"] = { fg = palette.red },
+					["@keyword"] = { fg = palette.magenta },
+					["@keyword.function"] = { fg = palette.magenta },
+					["@keyword.return"] = { fg = palette.red },
+					["@string"] = { fg = palette.yellow },
+					["@string.escape"] = { fg = palette.purple },
+					["@number"] = { fg = palette.orange },
+					["@boolean"] = { fg = palette.orange, fmt = "bold" },
+					["@constant"] = { fg = palette.orange },
+					["@constant.builtin"] = { fg = palette.purple },
+					["@operator"] = { fg = palette.red },
+					["@punctuation.bracket"] = { fg = palette.fg_dark },
+					["@punctuation.delimiter"] = { fg = palette.fg_dark },
+				},
+				diagnostics = {
+					darker = true,
+					undercurl = true,
+					background = true,
+				},
+			})
 
-			-- toggle theme style ---
-			toggle_style_key = nil, -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-			toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- List of styles to toggle between
-
-			-- Change code style ---
-			-- Options are italic, bold, underline, none
-			-- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
-			code_style = {
-				comments = "italic",
-				keywords = "none",
-				functions = "none",
-				strings = "none",
-				variables = "none",
-			},
-
-			-- Lualine options --
-			lualine = {
-				transparent = false, -- lualine center bar transparency
-			},
-
-			-- Custom Highlights --
-			colors = {}, -- Override default colors
-			highlights = {}, -- Override highlight groups
-
-			-- Plugins Config --
-			diagnostics = {
-				darker = true, -- darker colors for diagnostic
-				undercurl = true, -- use undercurl instead of underline for diagnostics
-				background = true, -- use background color for virtual text
-			},
-		})
-	end,
-
+			vim.cmd.colorscheme("onedark")
+		end,
+	},
 	{
 		"LazyVim/LazyVim",
 		opts = {
