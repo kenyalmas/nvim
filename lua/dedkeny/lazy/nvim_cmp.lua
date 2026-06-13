@@ -1,65 +1,62 @@
-return { -- Autocompletion
-	"hrsh7th/nvim-cmp",
-	name = "nvim-cmp",
-	lazy = false,
-	dependencies = {
-		{
-			"L3MON4D3/LuaSnip",
-			build = (function()
-				if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-					return
-				end
-				return "make install_jsregexp"
-			end)(),
-			config = function()
-				local ls = require("luasnip")
-
-				ls.filetype_extend("javascript", { "jsdoc" })
-
-				vim.keymap.set("i", "<C-s>e", function()
-					ls.expand()
-				end, { silent = true, desc = "Expand snippet" })
-
-				vim.keymap.set({ "i", "s" }, "<C-s>;", function()
-					ls.jump(1)
-				end, { silent = true, desc = "Jump to next snippet field" })
-
-				vim.keymap.set({ "i", "s" }, "<C-s>,", function()
-					ls.jump(-1)
-				end, { silent = true, desc = "Jump to previous snippet field" })
-
-				vim.keymap.set({ "i", "s" }, "<C-E>", function()
-					if ls.choice_active() then
-						ls.change_choice(1)
+return {
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{
+				"L3MON4D3/LuaSnip",
+				build = (function()
+					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+						return
 					end
-				end, { silent = true, desc = "Cycle snippet choice" })
-			end,
-			dependencies = {
-				{
-					"rafamadriz/friendly-snippets",
-					config = function()
-						require("luasnip.loaders.from_vscode").lazy_load()
-					end,
+					return "make install_jsregexp"
+				end)(),
+				config = function()
+					local ls = require("luasnip")
+
+					ls.filetype_extend("javascript", { "jsdoc" })
+
+					vim.keymap.set("i", "<C-s>e", function()
+						ls.expand()
+					end, { silent = true, desc = "Expand snippet" })
+
+					vim.keymap.set({ "i", "s" }, "<C-s>;", function()
+						ls.jump(1)
+					end, { silent = true, desc = "Jump to next snippet field" })
+
+					vim.keymap.set({ "i", "s" }, "<C-s>,", function()
+						ls.jump(-1)
+					end, { silent = true, desc = "Jump to previous snippet field" })
+
+					vim.keymap.set({ "i", "s" }, "<C-E>", function()
+						if ls.choice_active() then
+							ls.change_choice(1)
+						end
+					end, { silent = true, desc = "Cycle snippet choice" })
+				end,
+				dependencies = {
+					{
+						"rafamadriz/friendly-snippets",
+						config = function()
+							require("luasnip.loaders.from_vscode").lazy_load()
+						end,
+					},
 				},
 			},
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-path",
 		},
-		"saadparwaiz1/cmp_luasnip",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-path",
-	},
-	config = function()
-		local cmp = require("cmp")
-		local luasnip = require("luasnip")
-		luasnip.config.setup({})
+		opts = function(_, opts)
+			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+			luasnip.config.setup({})
 
-		cmp.setup({
-			snippet = {
+			opts.snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
 				end,
-			},
-			completion = { completeopt = "menu,menuone,noinsert" },
-			mapping = cmp.mapping.preset.insert({
+			}
+			opts.completion = { completeopt = "menu,menuone,noinsert" }
+			opts.mapping = cmp.mapping.preset.insert({
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -79,8 +76,8 @@ return { -- Autocompletion
 						luasnip.jump(-1)
 					end
 				end, { "i", "s" }),
-			}),
-			sources = {
+			})
+			opts.sources = cmp.config.sources({
 				{
 					name = "lazydev",
 					group_index = 0,
@@ -88,11 +85,21 @@ return { -- Autocompletion
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
-			},
-		})
+			})
 
-		cmp.setup.filetype("AgenticInput", {
-			enabled = false,
-		})
-	end,
+			local original_enabled = opts.enabled
+			opts.enabled = function()
+				if vim.bo.filetype == "AgenticInput" then
+					return false
+				end
+				if type(original_enabled) == "function" then
+					return original_enabled()
+				end
+				if original_enabled == nil then
+					return true
+				end
+				return original_enabled
+			end
+		end,
+	},
 }

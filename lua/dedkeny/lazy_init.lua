@@ -15,6 +15,7 @@ require("lazy").setup({
 	spec = {
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		{ "saghen/blink.cmp", enabled = false },
+		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" },
 		require("dedkeny.lazy.agentic"),
 		require("dedkeny.lazy.cloak"),
 		require("dedkeny.lazy.conform"),

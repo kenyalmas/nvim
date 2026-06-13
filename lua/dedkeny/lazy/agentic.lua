@@ -24,6 +24,22 @@ local function codex_acp_command()
 	return candidates[1]
 end
 
+local function codex_acp_provider()
+	local command = codex_acp_command()
+
+	if vim.fn.has("win32") == 1 then
+		return {
+			command = "cmd.exe",
+			args = { "/c", command },
+		}
+	end
+
+	return {
+		command = command,
+		args = {},
+	}
+end
+
 return {
 	"carlos-algms/agentic.nvim",
 	lazy = false,
@@ -31,9 +47,7 @@ return {
 	opts = {
 		provider = "codex-acp",
 		acp_providers = {
-			["codex-acp"] = {
-				command = codex_acp_command(),
-			},
+			["codex-acp"] = codex_acp_provider(),
 		},
 		windows = {
 			position = "right",
