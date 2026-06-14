@@ -18,7 +18,8 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+local home = os.getenv("HOME") or os.getenv("USERPROFILE") or vim.fn.expand("~")
+vim.opt.undodir = home .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true
@@ -26,11 +27,8 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
-
-vim.opt.updatetime = 50
 
 vim.opt.showmode = false
 
@@ -51,7 +49,7 @@ vim.opt.smartcase = true
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
 
--- Decrease update time
+-- Set update time
 vim.opt.updatetime = 250
 
 -- Configure how new splits should be opened

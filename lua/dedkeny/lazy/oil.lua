@@ -11,7 +11,7 @@ return {
 				},
 			})
 			vim.keymap.set("n", "<leader>fo", require("oil").toggle_float, { desc = "Oil Explorer floated" })
-			vim.keymap.set("n", "<leader>fe", "<CMD>Oil<CR>", { desc = "Oil Explorer windowed" })
+			vim.keymap.set("n", "<leader>fO", "<CMD>Oil<CR>", { desc = "Oil Explorer windowed" })
 		end,
 	},
 }

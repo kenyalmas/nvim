@@ -17,6 +17,20 @@ nvim --headless "+Lazy! sync" +qa
 ## Windows
 - Ensure `nvim` is on `PATH`.
 - Ensure a C toolchain is available for parser/plugin builds (`zig`, `clang`, etc).
+- Install `gdb` (winget):
+```powershell
+winget install --id BrechtSanders.WinLibs.POSIX.UCRT -e --accept-package-agreements --accept-source-agreements
+```
+- Add `gdb` to user `PATH` (if your shell cannot find it after install):
+```powershell
+$gdbBin = "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\mingw64\bin"
+[Environment]::SetEnvironmentVariable("Path", ([Environment]::GetEnvironmentVariable("Path","User").TrimEnd(";") + ";" + $gdbBin), "User")
+```
+- Reopen terminal and verify:
+```powershell
+where.exe gdb
+gdb --version
+```
 - If Windows security features block writes, use user-writable runtime/data paths.
 - Verify:
 ```powershell
@@ -34,9 +48,17 @@ nvim --headless "+checkhealth nvim-treesitter" +qa
 
 ## Linux
 - Install Neovim, Git, and build tools required by Treesitter parsers.
+- Install `tree-sitter-cli` and ensure `tree-sitter` is on `PATH` if you want local parser builds.
+- Install `codex-acp` on `PATH` if you want the Agentic integration to work:
+```bash
+npm install -g codex-acp
+codex-acp --help
+```
 - Keep config under `~/.config/nvim`.
 - Verify:
 ```bash
 nvim --headless "+Lazy! check" +qa
+nvim --headless "+checkhealth nvim-treesitter" +qa
+nvim --headless "+checkhealth agentic" +qa
 nvim --headless "+checkhealth lazy" +qa
 ```

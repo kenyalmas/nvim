@@ -6,7 +6,7 @@ return {             -- Useful plugin to show you pending keybinds.
             -- set icon mappings to true if you have a Nerd Font
             mappings = vim.g.have_nerd_font,
             -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-            -- default whick-key.nvim defined Nerd Font icons, otherwise define a string table
+            -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
             keys = vim.g.have_nerd_font and {} or {
                 Up = "<Up> ",
                 Down = "<Down> ",
@@ -41,11 +41,14 @@ return {             -- Useful plugin to show you pending keybinds.
 
         -- Document existing key chains
         spec = {
-            { "<leader>d", group = "[B]uffer" },
+            { "<leader>a", group = "[A]I" },
             { "<leader>c", group = "[C]hange" },
             { "<leader>d", group = "[D]elete" },
+            { "<leader>e", group = "[E]rrors" },
             { "<leader>f", group = "[F]ind" },
             { "<leader>g", group = "[G]it" },
+            { "<leader>l", group = "[L]SP" },
+            { "<leader>m", group = "[M]isc" },
             { "<leader>w", group = "[W]indow" },
         },
     },

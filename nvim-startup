@@ -1,0 +1,85 @@
+
+Could not open Fidget log: C:\Users\kenne\.nvim-win\cache\nvim/fidget.nvim.log
+Error in command line..VimLeavePre Autocommands for "*":Failed to open LSP client log file: C:/Users/kenne/.nvim-win/state/nvim-data/lsp.log: Permission denied
+Error in command line:Failed to run `config` for nvim-treesitter
+
+...kenne\AppData\Local\nvim/lua/dedkeny/lazy/treesitter.lua:12: module 'nvim-treesitter.configs' not found:
+	no field package.preload['nvim-treesitter.configs']
+	cache_loader: module 'nvim-treesitter.configs' not found
+	cache_loader_lib: module 'nvim-treesitter.configs' not found
+	no file '.\nvim-treesitter\configs.lua'
+	no file 'C:\Program Files (x86)\Nvim\bin\lua\nvim-treesitter\configs.lua'
+	no file 'C:\Program Files (x86)\Nvim\bin\lua\nvim-treesitter\configs\init.lua'
+	no file '.\nvim-treesitter\configs.dll'
+	no file 'C:\Program Files (x86)\Nvim\bin\nvim-treesitter\configs.dll'
+	no file 'C:\Program Files (x86)\Nvim\bin\loadall.dll'
+	no file '.\nvim-treesitter.dll'
+	no file 'C:\Program Files (x86)\Nvim\bin\nvim-treesitter.dll'
+	no file 'C:\Program Files (x86)\Nvim\bin\loadall.dll'
+
+# stacktrace:
+  - ~\AppData\Local\nvim/lua/dedkeny/lazy/treesitter.lua:12 _in_ **config**
+  - ~\AppData\Local\nvim/lua/dedkeny/lazy_init.lua:14
+  - ~\AppData\Local\nvim/lua/dedkeny/init.lua:3
+  - ~\AppData\Local\nvim\init.lua:1
+Failed to source `C:/Users/kenne/.nvim-win/data/nvim-data/lazy/gitsigns.nvim/plugin/gitsigns.lua`
+
+vim/_editor.lua:375: BufNewFile Autocommands for "*"..script nvim_exec2() called at BufNewFile Autocommands for "*":0[1]..C:/Users/kenne/.nvim-win/data/nvim-data/lazy/gitsigns.nvim/plugin/gitsigns.lua: Vim(source):E5113: Lua chunk: vim/_system.lua:326: EPERM: operation not permitted
+stack traceback:
+	[thread: 0x017f57bdec68] [C]: in function 'asystem'
+	[thread: 0x017f57bdec68] ...vim-data/lazy/gitsigns.nvim/lua/gitsigns/git/version.lua:55: in function 'set_version'
+	[thread: 0x017f57bdec68] ...vim-data/lazy/gitsigns.nvim/lua/gitsigns/git/version.lua:86: in function 'check_version'
+	[thread: 0x017f57bdec68] ...a/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/git/repo.lua:623: in function 'get_info'
+	[thread: 0x017f57bdec68] ...a/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/git/repo.lua:549: in function <...a/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/git/repo.lua:548>
+	[thread: 0x017f57bdec68] [C]: in function 'pcall'
+	[thread: 0x017f57bdec68] ...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:616: in function 'get'
+	[thread: 0x017f57bdec68] ...n/data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/git.lua:239: in function 'new'
+	[thread: 0x017f57bdec68] ...ata/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/attach.lua:317: in function 'fn'
+	[thread: 0x017f57bdec68] ...a/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/debounce.lua:129: in function <...a/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/debounce.lua:114>
+stack traceback:
+	[C]: in function 'error'
+	...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:209: in function 'callback'
+	...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:91: in function 'await'
+	...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:207: in function 'raise_on_error'
+	...ta/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/actions.lua:79: in function 'async_run'
+	...ta/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/actions.lua:147: in function 'attach'
+	...m-win/data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns.lua:203: in function 'setup_attach'
+	...m-win/data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns.lua:253: in function 'setup'
+	...in/data/nvim-data/lazy/gitsigns.nvim/plugin/gitsigns.lua:1: in main chunk
+	[C]: in function 'nvim_exec2'
+	vim/_editor.lua:375: in function 'cmd'
+	...n/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/loader.lua:510: in function <...n/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/loader.lua:509>
+	[C]: in function 'xpcall'
+	...win/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/util.lua:135: in function 'try'
+	...n/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/loader.lua:509: in function 'source'
+	...n/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/loader.lua:457: in function 'source_runtime'
+	...n/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/loader.lua:425: in function 'packadd'
+	...n/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/loader.lua:359: in function '_load'
+	...n/data/nvim-data/lazy/lazy.nvim/lua/lazy/core/loader.lua:197: in function 'load'
+	...nvim-data/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:85: in function <...nvim-data/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:72>
+
+# stacktrace:
+  - vim\_editor.lua:375 _in_ **cmd**
+Failed to run `config` for nvim-lspconfig
+
+...in/data/nvim-data/lazy/mason.nvim/lua/mason-core/log.lua:115: C:/Users/kenne/.nvim-win/state/nvim-data/mason.log: Permission denied
+
+# stacktrace:
+  - mason.nvim\lua\mason-core\log.lua:115 _in_ **fmt_warn**
+  - mason.nvim\lua\mason-registry\sources\init.lua:187 _in_ **unique_insert**
+  - mason.nvim\lua\mason-registry\sources\init.lua:170 _in_ **append**
+  - mason.nvim\lua\mason\init.lua:27 _in_ **setup**
+  - ~\AppData\Local\nvim/lua/dedkeny/lazy/lsp.lua:23 _in_ **config**
+vim.schedule callback: vim/_system.lua:326: EPERM: operation not permitted
+stack traceback:
+	[thread: 0x017f574fbff8] [C]: in function 'asystem'
+	[thread: 0x017f574fbff8] ...vim-data/lazy/gitsigns.nvim/lua/gitsigns/git/version.lua:55: in function 'set_version'
+	[thread: 0x017f574fbff8] ...vim-data/lazy/gitsigns.nvim/lua/gitsigns/git/version.lua:86: in function 'check_version'
+	[thread: 0x017f574fbff8] ...a/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/git/repo.lua:623: in function 'get_info'
+	[thread: 0x017f574fbff8] ...m-win/data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns.lua:44: in function 'get_gitdir_and_head'
+	[thread: 0x017f574fbff8] ...m-win/data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns.lua:131: in function <...m-win/data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns.lua:114>
+stack traceback:
+	[C]: in function 'error'
+	...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:234: in function '_finish'
+	...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:328: in function '_resume'
+	...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:323: in function <...data/nvim-data/lazy/gitsigns.nvim/lua/gitsigns/async.lua:313>
