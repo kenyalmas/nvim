@@ -4,6 +4,32 @@ require("dedkeny.lazy_init")
 require("dedkeny.options")
 require("dedkeny.startup_cwd")
 
+local function ensure_ripgrep_on_windows_path()
+	if vim.fn.has("win32") ~= 1 or vim.fn.executable("rg") == 1 then
+		return
+	end
+
+	local candidates = {
+		vim.fn.expand("$LOCALAPPDATA/OpenAI/Codex/bin/*/rg.exe"),
+		vim.fn.expand("$LOCALAPPDATA/Packages/OpenAI.Codex_2p2nqsd0c76g0/LocalCache/Local/OpenAI/Codex/bin/rg.exe"),
+		vim.fn.expand("$LOCALAPPDATA/Programs/Microsoft VS Code/*/resources/app/node_modules/@vscode/ripgrep-universal/bin/win32-x64/rg.exe"),
+		vim.fn.expand("$USERPROFILE/scoop/apps/ripgrep/current/rg.exe"),
+	}
+
+	for _, pattern in ipairs(candidates) do
+		local matches = vim.fn.glob(pattern, false, true)
+		if #matches > 0 then
+			local dir = vim.fs.dirname(matches[1])
+			if dir and dir ~= "" then
+				vim.env.PATH = dir .. ";" .. vim.env.PATH
+				return
+			end
+		end
+	end
+end
+
+ensure_ripgrep_on_windows_path()
+
 local augroup = vim.api.nvim_create_augroup
 local DedkenyGroup = augroup("Dedkeny", {})
 
